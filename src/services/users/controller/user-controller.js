@@ -23,7 +23,7 @@ export const createUser = async (req, res, next) => {
     return next(new InvariantError('User gagal ditambahkan'));
   }
 
-  return response(res, 201, 'User berhasil ditambahkan', user);
+  return response(res, 201, 'User berhasil ditambahkan', { user });
 };
 
 export const getUserById = async (req, res, next) => {
@@ -34,5 +34,5 @@ export const getUserById = async (req, res, next) => {
     return next(new NotFoundError('User tidak ditemukan'));
   }
 
-  return response(res, 200, 'User berhasil ditampilkan', user);
+  return response(res, 200, 'User berhasil ditampilkan', { user });
 };

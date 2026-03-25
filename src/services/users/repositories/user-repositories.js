@@ -18,7 +18,7 @@ class UserRepositories {
       values: [id, username, hashedPassword, fullname, createdAt, updatedAt],
     };
 
-    const result = await this._pool.query(query);
+    const result = await this.pool.query(query);
     return result.rows[0];
   }
 
@@ -28,7 +28,7 @@ class UserRepositories {
       values: [username],
     };
 
-    const result = await this._pool.query(query);
+    const result = await this.pool.query(query);
 
     return result.rows.length > 0;
   }
@@ -39,7 +39,7 @@ class UserRepositories {
       values: [id],
     };
 
-    const result = await this._pool.query(query);
+    const result = await this.pool.query(query);
 
     return result.rows[0];
   }
@@ -49,15 +49,15 @@ class UserRepositories {
       values: [username],
     };
 
-    const user = await this._pool.query(query);
+    const user = await this.pool.query(query);
     if (!user) {
       return null;
     }
 
     const { id, password: hashedPassword } = user.rows[0];
-    const isPasswordNatch = await bcrypt.compare(password, hashedPassword);
+    const isPasswordMatch = await bcrypt.compare(password, hashedPassword);
 
-    if (!isPasswordNatch) {
+    if (!isPasswordMatch) {
       return null;
     }
     return id;
