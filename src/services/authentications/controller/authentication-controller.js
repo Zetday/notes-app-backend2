@@ -1,4 +1,4 @@
-import AuthenticationRepositories from '../repositories/authentications-repositories.js';
+import AuthenticationRepositories from '../repositories/authentication-repositories.js';
 import UserRepositories from '../../users/repositories/user-repositories.js';
 import TokenManager from '../../../security/token-manager.js';
 import response from '../../../utils/response.js';
@@ -9,7 +9,7 @@ export const login = async (req, res, next) => {
   const { username, password } = req.validated;
   const userId = await UserRepositories.verifyUserCredential(
     username,
-    password
+    password,
   );
 
   if (!userId) {
@@ -30,9 +30,8 @@ export const login = async (req, res, next) => {
 export const refreshToken = async (req, res, next) => {
   const { refreshToken } = req.validated;
 
-  const result = await AuthenticationRepositories.verifyRefreshToken(
-    refreshToken
-  );
+  const result =
+    await AuthenticationRepositories.verifyRefreshToken(refreshToken);
 
   if (!result) {
     return next(new InvariantError('Refresh token tidak valid'));
@@ -49,9 +48,8 @@ export const refreshToken = async (req, res, next) => {
 export const logout = async (req, res, next) => {
   const { refreshToken } = req.validated;
 
-  const result = await AuthenticationRepositories.verifyRefreshToken(
-    refreshToken
-  );
+  const result =
+    await AuthenticationRepositories.verifyRefreshToken(refreshToken);
 
   if (!result) {
     return next(new InvariantError('Refresh token tidak valid'));

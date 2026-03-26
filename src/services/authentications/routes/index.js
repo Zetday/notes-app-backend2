@@ -3,8 +3,8 @@ import {
   login,
   refreshToken,
   logout,
-} from '../controllers/authentication-controller.js';
-import validate from '../../../middlewares/validate.js';
+} from '../controller/authentication-controller.js';
+import { validate } from '../../../middlewares/validate.js';
 import {
   postAuthenticationPayloadSchema,
   putAuthenticationPayloadSchema,
