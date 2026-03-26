@@ -7,7 +7,7 @@ async function authenticateToken(req, res, next) {
     try {
       const user = await TokenManager.verify(
         token.split('Bearer ')[1],
-        process.env.ACCESS_TOKEN_KEY
+        process.env.ACCESS_TOKEN_KEY,
       );
       req.user = user;
       return next();
