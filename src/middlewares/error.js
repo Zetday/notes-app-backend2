@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import response from '../utils/response.js';
 import { ClientError } from '../exceptions/index.js';
 
