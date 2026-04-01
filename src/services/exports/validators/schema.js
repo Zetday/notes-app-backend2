@@ -1,16 +1,5 @@
-import { Router } from 'express';
-import { exportNotes } from '../controllers/export-controller.js';
-import authenticateToken from '../../../middlewares/auth.js';
-import validate from '../../../middlewares/validate.js';
-import { exportPayloadSchema } from '../validator/schema.js';
+import Joi from 'joi';
 
-const router = Router();
-
-router.post(
-  '/export/notes',
-  authenticateToken,
-  validate(exportPayloadSchema),
-  exportNotes,
-);
-
-export default router;
+export const exportPayloadSchema = Joi.object({
+  targetEmail: Joi.string().email({ tlds: true }).required(),
+});
