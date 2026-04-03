@@ -20,20 +20,20 @@ router.post(
   '/notes',
   authenticateToken,
   validate(notePayloadSchema),
-  createNote
+  createNote,
 );
 router.get(
   '/notes',
   authenticateToken,
   validateQuery(noteQuerySchema),
-  getNotes
+  getNotes,
 );
 router.get('/notes/:id', authenticateToken, getNoteById);
 router.put(
   '/notes/:id',
   authenticateToken,
   validate(noteUpdatePayloadSchema),
-  editNoteById
+  editNoteById,
 );
 router.delete('/notes/:id', authenticateToken, deleteNoteById);
 
