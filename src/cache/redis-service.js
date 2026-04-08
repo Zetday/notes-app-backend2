@@ -20,4 +20,12 @@ class CacheService {
       EX: expirationInSecond,
     });
   }
+
+  async get(key) {
+    const result = await this._client.get(key);
+
+    if (result === null) throw new Error('Cache tidak ditemukan');
+
+    return result;
+  }
 }
