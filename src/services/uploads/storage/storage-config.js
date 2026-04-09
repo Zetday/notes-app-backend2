@@ -19,6 +19,17 @@ const storage = multer.diskStorage({
   },
 });
 
+// Validasi file yang diupload menggunakan disk storage
+// export const upload = multer({
+//   storage,
+//   limits: { fileSize: 5 * 1024 * 1024 },
+//   fileFilter: (req, file, cb) => {
+//     if (file.mimetype && file.mimetype.startsWith('image/')) cb(null, true);
+//     else cb(new ClientError('Only image files are allowed'), false);
+//   },
+// });
+
+// Validasi file yang diupload menggunakan memory storage
 export const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 5 * 1024 * 1024 },
